@@ -1,16 +1,62 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import SinglePost from '../components/SinglePost.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Website of Javier Diaz">
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-md px-4">
+      <div class="flex flex-col gap-2">
+        <h1 class="text-3xl font-semibold">Hi! I'm Javier</h1>
+        <p class="text-gray-500">I build beautiful interfaces for different ambitious.</p>
+      </div>
+    </div>
+  </section>
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-md px-4">
+      <h2 class="text-xl font-medium pb-4">My latest work</h2>
+      <div class="grid grid-cols-2 gap-5">
+        <Card
+          href="#"
+          title="Linkzy"
+          description="A set of components to create a one-link page"
+        />
+        <Card
+          href="#"
+          title="Kobby"
+          description="No-code tool to create transctional emails"
+        />
+        <Card
+          href="#"
+          title="Dimelo en codigo"
+          description="A website to learn how to code in spanish"
+        />
+        <Card
+          href="#"
+          title="Vue Datasource"
+          description="A Vue component to create dynamic tables"
+        />
+      </div>
+    </div>
+  </section>
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-md px-4">
+      <h2 class="text-xl font-medium pb-4">Recent posts</h2>
+      <div class="flex flex-col gap-3">
+        <SinglePost
+          title="How to create a website with Astro"
+          datetime="2023-12-23T15:07:00"
+        />
+        <SinglePost
+          title="What is Astro"
+          datetime="2023-12-23T15:07:00"
+        />
+        <SinglePost
+          title="How to build better UI kits with React"
+          datetime="2023-12-23T15:07:00"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

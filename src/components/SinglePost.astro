@@ -1,0 +1,14 @@
+---
+const { slug = '#', title, datetime } = Astro.props;
+---
+
+<a href={slug}>
+  <article class="flex justify-between hover:bg-gray-50 items-center py-4 px-5 border rounded-xl">
+    <time datetime={datetime} class="uppercase tracking-wider text-sm text-gray-500">
+      Dec 23, 2023
+    </time>
+    <h3 class="font-medium">
+      {title}
+    </h3>
+  </article>
+</a>
