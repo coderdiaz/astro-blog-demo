@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Card from '../components/Card.astro';
 import SinglePost from '../components/SinglePost.astro';
+import { getCollection } from 'astro:content';
+
+const postsEntries = await getCollection('posts');
 ---
 
 <BaseLayout title="Website of Javier Diaz">
@@ -44,18 +47,13 @@ import SinglePost from '../components/SinglePost.astro';
     <div class="mx-auto max-w-screen-md px-4">
       <h2 class="text-xl font-medium pb-4">Recent posts</h2>
       <div class="flex flex-col gap-3">
-        <SinglePost
-          title="How to create a website with Astro"
-          datetime="2023-12-23T15:07:00"
-        />
-        <SinglePost
-          title="What is Astro"
-          datetime="2023-12-23T15:07:00"
-        />
-        <SinglePost
-          title="How to build better UI kits with React"
-          datetime="2023-12-23T15:07:00"
-        />
+        {postsEntries.map((post) => (
+          <SinglePost
+            slug={post.slug}
+            title={post.data.title}
+            datetime={post.data.date}
+          />
+        ))}
       </div>
     </div>
   </section>

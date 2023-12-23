@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NextStreamImage from '../assets/images/next-stream.jpg';
+
+export async function getStaticPaths() {
+  const postsEntries = await getCollection('posts');
+  return postsEntries.map((post) => ({
+    params: { slug: post.slug }, props: { post },
+  }));
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<BaseLayout title={post.data.title}>
+  <section>
+    <div class="mx-auto max-w-screen-md px-4">
+      <article class="flex flex-col gap-7">
+        <div class="flex flex-col gap-2">
+          <h1 class="text-4xl text-balance font-semibold">
+            {post.data.title}
+          </h1>
+          <div class="flex gap-3 items-center">
+            <time>{post.data.date}</time>
+            <span class="w-1 h-1 bg-gray-300 rounded-full" />
+            <span>5 min read</span>
+          </div>
+        </div>
+        <Image
+          class="aspect-video rounded-2xl"
+          width={720}
+          height={400}
+          src={post.data.image}
+          alt="Unsplash Image"
+        />
+        <div class="prose">
+          <Content />
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
